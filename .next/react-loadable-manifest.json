@@ -1,1 +1,32 @@
-{}
+{
+  "app/layout.js -> bootstrap/dist/js/bootstrap.esm": {
+    "id": "app/layout.js -> bootstrap/dist/js/bootstrap.esm",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_bootstrap_dist_js_bootstrap_esm_js.js"
+    ]
+  },
+  "components/homes/home-6/Testimonials.jsx -> imagesloaded": {
+    "id": "components/homes/home-6/Testimonials.jsx -> imagesloaded",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_imagesloaded_imagesloaded_js.js"
+    ]
+  },
+  "components/homes/home-6/Testimonials.jsx -> isotope-layout": {
+    "id": "components/homes/home-6/Testimonials.jsx -> isotope-layout",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_isotope-layout_js_isotope_js.js"
+    ]
+  },
+  "components/homes/home-6/TestimonialsDark.jsx -> imagesloaded": {
+    "id": "components/homes/home-6/TestimonialsDark.jsx -> imagesloaded",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_imagesloaded_imagesloaded_js.js"
+    ]
+  },
+  "components/homes/home-6/TestimonialsDark.jsx -> isotope-layout": {
+    "id": "components/homes/home-6/TestimonialsDark.jsx -> isotope-layout",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_isotope-layout_js_isotope_js.js"
+    ]
+  }
+}
