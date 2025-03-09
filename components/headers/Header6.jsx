@@ -14,14 +14,14 @@ export default function Header6({ links }) {
       <div className="nav-logo-wrap position-static local-scroll">
         <a href="#top" className="logo">
           <Image
-            src="/assets/images/demo-fancy/logo-dark.png"
+            src="/assets/images/JoyPal_Logostics_Logo.svg"
             alt="Your Company Logo"
             width={154}
             height={35}
             className="light-mode-logo"
           />
           <Image
-            src="/assets/images/demo-fancy/logo-white.png"
+            src="/assets/images/JoyPal_Logostics_Logo.svg"
             alt="Your Company Logo"
             width={154}
             height={35}
