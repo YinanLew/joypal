@@ -1,4 +1,4 @@
-import Footer1 from "@/components/footers/Footer1";
+import Footer6 from "@/components/footers/Footer6";
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
@@ -112,7 +112,7 @@ export default function MainAboutPage1() {
             </main>
           </>
 
-          <Footer1 />
+          <Footer6 />
         </div>{" "}
       </div>
     </>
