@@ -107,26 +107,7 @@ export default function Hero1() {
                   </div>
                   {/* End Decorative Waves */}
                 </div>
-                <div className="small text-gray text-center">
-                  Illustration by
-                  <a
-                    href="https://icons8.com/illustrations/author/TQQ1qAnr9rn5"
-                    rel="noopener nofollow"
-                    target="_blank"
-                  >
-                    {" "}
-                    Oleg Shcherba
-                  </a>{" "}
-                  from{" "}
-                  <a
-                    href="https://icons8.com/illustrations"
-                    rel="noopener nofollow"
-                    target="_blank"
-                  >
-                    Ouch
-                  </a>
-                  !
-                </div>
+               
               </div>
             </div>
             {/* End Image */}
