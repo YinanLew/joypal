@@ -1,27 +1,44 @@
 "use client";
+
+import React, { useContext } from "react";
 import { toggleMobileMenu } from "@/utlis/toggleMobileMenu";
 import Nav from "./components/Nav";
-
 import Image from "next/image";
 import LanguageSelect from "./components/LanguageSelect";
 import Link from "next/link";
+import { LanguageContext } from "@/app/context/LanguageProvider";
+import en from "@/app/locales/en";
+import zh from "@/app/locales/zh";
+
 export default function Header6({ links }) {
+  const { language } = useContext(LanguageContext);
+  // Use the header translations from the selected language
+  const trans = language === "zh" ? zh.header : en.header;
+
+  // Build header links from translation data
+  const headerLinks = [
+    { href: "#home", text: trans.menu.home },
+    { href: "#about", text: trans.menu.about },
+    { href: "#services", text: trans.menu.services },
+    { href: "#blog", text: trans.menu.blog },
+    // { href: "#pricing", text: trans.menu.pricing },
+    { href: "#contact", text: trans.menu.contact },
+  ];
+
   return (
     <div className="main-nav-sub container">
-      {/* Logo  (* Add your text or image to the link tag. Use SVG or PNG image format. 
-              If you use a PNG logo image, the image resolution must be equal 200% of the visible logo
-              image size for support of retina screens. See details in the template documentation. *) */}
+      {/* Logo */}
       <div className="nav-logo-wrap position-static local-scroll">
         <a href="#top" className="logo">
           <Image
-            src="/assets/images/JoyPal_Logostics_Logo.svg"
+            src="/assets/images/JoyPal_Logistics_Logo.svg"
             alt="Your Company Logo"
             width={154}
             height={35}
             className="light-mode-logo"
           />
           <Image
-            src="/assets/images/JoyPal_Logostics_Logo.svg"
+            src="/assets/images/JoyPal_Logistics_Logo.svg"
             alt="Your Company Logo"
             width={154}
             height={35}
@@ -42,7 +59,7 @@ export default function Header6({ links }) {
       {/* Main Menu */}
       <div className="inner-nav desktop-nav">
         <ul className="clearlist scroll-nav local-scroll justify-content-end scrollspyLinks">
-          <Nav links={links} />
+          <Nav links={headerLinks} />
           <li className="desktop-nav-display">
             <div className="vr mt-2" />
           </li>
@@ -50,9 +67,9 @@ export default function Header6({ links }) {
           <LanguageSelect />
           {/* End Languages */}
           <li>
-            {links[0].href.includes("/") ? (
+            {headerLinks[0].href.includes("/") ? (
               <Link
-                href={links[links.length - 1].href}
+                href={headerLinks[headerLinks.length - 1].href}
                 className="opacity-1 no-hover"
               >
                 <span
@@ -60,9 +77,9 @@ export default function Header6({ links }) {
                   data-btn-animate="y"
                 >
                   <span className="btn-animate-y">
-                    <span className="btn-animate-y-1">Get in touch</span>
+                    <span className="btn-animate-y-1">{trans.getInTouch}</span>
                     <span className="btn-animate-y-2" aria-hidden="true">
-                      Get in touch
+                      {trans.getInTouch}
                     </span>
                   </span>
                 </span>
@@ -74,9 +91,9 @@ export default function Header6({ links }) {
                   data-btn-animate="y"
                 >
                   <span className="btn-animate-y">
-                    <span className="btn-animate-y-1">Get in touch</span>
+                    <span className="btn-animate-y-1">{trans.getInTouch}</span>
                     <span className="btn-animate-y-2" aria-hidden="true">
-                      Get in touch
+                      {trans.getInTouch}
                     </span>
                   </span>
                 </span>

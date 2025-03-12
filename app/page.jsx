@@ -2,7 +2,6 @@ import Footer6 from "@/components/footers/Footer6";
 import Header6 from "@/components/headers/Header6";
 import Home6 from "@/components/homes/home-6";
 import Hero1 from "@/components/homes/home-6/heros/Hero1";
-import { fancyOnepage } from "@/data/menu";
 import Image from "next/image";
 
 export const metadata = {
@@ -17,7 +16,7 @@ export default function Home6MainDemoOnepage() {
       <div className="theme-fancy">
         <div className="page" id="top">
           <nav className="main-nav transparent stick-fixed wow-menubar wch-unset">
-            <Header6 links={fancyOnepage} />
+            <Header6 />
           </nav>
           <main id="main">
             <section

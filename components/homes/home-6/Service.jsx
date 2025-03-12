@@ -1,12 +1,17 @@
-import { services3 } from "@/data/services";
-import React from "react";
+"use client";
+
+import React, { useContext } from "react";
 import Image from "next/image";
-const ServiceItem = ({ src, title, text }) => (
+import { LanguageContext } from "@/app/context/LanguageProvider";
+import en from "@/app/locales/en";
+import zh from "@/app/locales/zh";
+
+const ServiceItem = ({ img, title, text }) => (
   <div className="col-md-6 d-flex align-items-stretch">
     <div className="services-5-item d-flex align-items-stretch text-center text-xl-start">
       <div className="d-xl-flex wow fadeInUpShort">
         <div className="services-5-image mb-lg-20 me-xl-4">
-          <Image src={src} width={198} height={198} alt="Image Description" />
+          <Image src={img} width={198} height={198} alt="Image Description" />
         </div>
         <div className="services-5-body d-flex align-items-center">
           <div className="w-100">
@@ -18,36 +23,24 @@ const ServiceItem = ({ src, title, text }) => (
     </div>
   </div>
 );
+
 export default function Service() {
+  const { language } = useContext(LanguageContext);
+  // Use the entire translations object for services.
+  const trans = language === "zh" ? zh.services : en.services;
+
   return (
     <>
       <div className="row services-5-grid">
-        {/* Services Item */}
-        {services3.map((service, index) => (
-          <ServiceItem key={index} {...service} />
+        {trans.content.map((service, index) => (
+          <ServiceItem
+            key={index}
+            img={service.img}
+            title={service.sectionTitle}
+            text={service.text}
+          />
         ))}
-        {/* End Services Item */}
       </div>
-      {/* End Services Grid */}
-      <div className="small text-gray text-center mt-60 mt-sm-40">
-        Illustrations by{" "}
-        <a
-          href="https://www.instagram.com/b0g3nta"
-          rel="noopener nofollow"
-          target="_blank"
-        >
-          bogenta
-        </a>{" "}
-        from{" "}
-        <a
-          href="https://icons8.com/illustrations"
-          rel="noopener nofollow"
-          target="_blank"
-        >
-          Ouch
-        </a>
-        !
-      </div>{" "}
     </>
   );
 }

@@ -1,48 +1,64 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Image from "next/image";
 import ModalVideo from "react-modal-video";
+
+// 1) Import translations & context
+import en from "@/app/locales/en";
+import zh from "@/app/locales/zh";
+import { LanguageContext } from "@/app/context/LanguageProvider";
+
 export default function Hero1() {
   const [isOpen, setOpen] = useState(false);
+
+  // 2) Get the current language from context
+  const { language } = useContext(LanguageContext);
+
+  // 3) Pick which translation set we use
+  const t = language === "zh" ? zh.hero : en.hero;
+
   return (
     <>
-      {/* End Background Shape */}
       <div className="container position-relative min-height-100vh d-flex align-items-center pt-100 pb-100 pt-sm-120 pb-sm-120">
         {/* Home Section Content */}
         <div className="home-content text-start">
           <div className="row">
-            {/* Home Section Text */}
+            {/* Left Column (Text) */}
             <div className="col-md-10 offset-md-1 col-lg-6 offset-lg-0 col-xl-5 d-flex align-items-center mb-md-60 mb-sm-30">
               <div className="w-100 text-center text-lg-start">
+                {/* H2 / Small Heading */}
                 <h2
                   className="section-caption-fancy mb-30 mb-xs-20 wow fadeInUp"
                   data-wow-duration="1.2s"
                 >
-                  Resonance Web Studio
+                  {t.heading}
                 </h2>
+
+                {/* Large H1 Title with highlight */}
                 <h1 className="hs-title-10 mb-30">
                   <span className="wow charsAnimIn" data-splitting="chars">
-                    Make your{" "}
+                    {t.title.split(" ").slice(0, -1).join(" ")}{" "}
                     <span className="mark-decoration-3-wrap color-secondary-1-white">
-                      beautiful
+                      {t.title.split(" ").slice(-1)} {/* last word highlight */}
                       <b
                         className="mark-decoration-3 wow scalexIn"
                         data-wow-delay="1.1s"
                       />
-                    </span>{" "}
-                    web presence easily
+                    </span>
                   </span>
                 </h1>
+
+                {/* Short Paragraph */}
                 <p
                   className="section-descr mb-40 wow fadeInUp"
                   data-wow-delay="0.6s"
                   data-wow-duration="1.2s"
                   data-wow-offset={0}
                 >
-                  We are an award winning studio specializing in branding,
-                  design and engineering. Our mission is to make work process
-                  meaningful.
+                  {t.subtitle}
                 </p>
+
+                {/* Buttons */}
                 <div
                   className="local-scroll wow fadeInUp wch-unset"
                   data-wow-delay="0.7s"
@@ -52,7 +68,7 @@ export default function Hero1() {
                     href="#about"
                     className="btn btn-mod btn-color btn-large btn-round btn-hover-anim me-1 mb-xs-10"
                   >
-                    <span>Discover now</span>
+                    <span>{t.ctaButton}</span>
                   </a>{" "}
                   <a
                     onClick={() => setOpen(true)}
@@ -65,22 +81,21 @@ export default function Hero1() {
                           className="icon-play size-13 me-1"
                           aria-hidden="true"
                         ></i>{" "}
-                        How we work?
+                        {t.howWeWork}
                       </span>
                       <span className="btn-animate-y-2" aria-hidden="true">
                         <i
                           className="icon-play size-13 me-1"
                           aria-hidden="true"
                         ></i>{" "}
-                        How we work?
+                        {t.howWeWork}
                       </span>
                     </span>
                   </a>
                 </div>
               </div>
             </div>
-            {/* End Home Section Text */}
-            {/* Image */}
+            {/* Right Column (Image) */}
             <div className="col-lg-6 col-xl-7 d-flex align-items-center">
               <div className="w-100 wow fadeInLeft" data-wow-delay="0.7s">
                 <div className="position-relative mt-40 mb-20">
@@ -107,13 +122,10 @@ export default function Hero1() {
                   </div>
                   {/* End Decorative Waves */}
                 </div>
-               
               </div>
             </div>
-            {/* End Image */}
           </div>
         </div>
-        {/* End Home Section Content */}
         {/* Scroll Down */}
         <div
           className="local-scroll scroll-down-wrap-type-1 wow fadeInUp"
@@ -124,11 +136,15 @@ export default function Hero1() {
               <div className="scroll-down-1-icon">
                 <i className="mi-arrow-down" />
               </div>
-              <div className="scroll-down-1-text">Scroll Down</div>
+              {/* For Chinese, you might say 往下滚动 */}
+              <div className="scroll-down-1-text">
+                {language === "zh" ? "往下滚动" : "Scroll Down"}
+              </div>
             </a>
           </div>
         </div>
-        {/* End Scroll Down */}
+
+        {/* Modal Video */}
       </div>
       <ModalVideo
         channel="youtube"

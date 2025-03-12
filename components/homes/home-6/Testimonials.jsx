@@ -1,36 +1,41 @@
 "use client";
 
-import { brands } from "@/data/brands";
-import { numberItems2 } from "@/data/facts";
-import { testimonials5 } from "@/data/testimonials";
+import React, { useEffect, useRef, useContext } from "react";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+// Remove external data imports
+// import { brands } from "@/data/brands";
+// import { numberItems2 } from "@/data/facts";
+// import { testimonials5 } from "@/data/testimonials";
+
+import { LanguageContext } from "@/app/context/LanguageProvider";
+import en from "@/app/locales/en";
+import zh from "@/app/locales/zh";
+
 export default function Testimonials() {
   const isotopContainer = useRef();
+  const { language } = useContext(LanguageContext);
+  const trans = language === "zh" ? zh.testimonials : en.testimonials;
+
+  // Initialize Isotope for masonry layout
   const initIsotop = async () => {
     const Isotope = (await import("isotope-layout")).default;
     const imagesloaded = (await import("imagesloaded")).default;
-
-    // Initialize Isotope in the mounted hook
     const isotope = new Isotope(isotopContainer.current, {
       itemSelector: ".col-md-6",
-      layoutMode: "masonry", // or 'fitRows', depending on your layout needs
+      layoutMode: "masonry",
     });
     imagesloaded(isotopContainer.current).on("progress", function () {
-      // Trigger Isotope layout
       isotope.layout();
     });
   };
 
   useEffect(() => {
-    /////////////////////////////////////////////////////
-    // Magnate Animation
-
     initIsotop();
   }, []);
+
   return (
     <div className="container position-relative">
       <div className="row">
@@ -38,32 +43,24 @@ export default function Testimonials() {
         <div className="col-lg-5 col-xl-5 d-flex align-items-center mb-md-60 mb-sm-40">
           <div className="w-100">
             <h2 className="section-caption-fancy mb-20 mb-xs-10">
-              Testimonials
+              {trans.title}
             </h2>
-            <h3 className="section-title-small mb-30">
-              We help brands to stand out in the ever-changing digital
-              landscape.
-            </h3>
-            <p className="section-descr mb-30">
-              A static website stores a unique file for every page of a static
-              website. Each time that page is requested, the same content is
-              returned.
-            </p>
-            {/* Numbers */}
+            <h3 className="section-title-small mb-30">{trans.subtitle}</h3>
+            <p className="section-descr mb-30">{trans.description}</p>
+            {/* Numbers / Facts */}
             <div className="row">
-              {numberItems2.map((item, index) => (
+              {trans.facts.map((fact, index) => (
                 <div
                   key={index}
                   className={`col-md-6 number-1-item ${
                     !index ? "mb-sm-10" : ""
                   }`}
                 >
-                  <div className="number-1-title">{item.title}</div>
-                  <div className="number-1-descr">{item.description}</div>
+                  <div className="number-1-title">{fact.title}</div>
+                  <div className="number-1-descr">{fact.description}</div>
                 </div>
               ))}
             </div>
-            {/* End Numbers */}
           </div>
         </div>
         {/* End Section Text */}
@@ -84,13 +81,12 @@ export default function Testimonials() {
                 alt=""
               />
             </div>
-            {/* End Decoration Dots */}
+            {/* Testimonials Items (Masonry Grid) */}
             <div ref={isotopContainer} className="row masonry mb-n30">
-              {/* Testimonials Item */}
-              {testimonials5.map((testimonial, index) => (
+              {trans.list.map((testimonial, index) => (
                 <div
                   key={index}
-                  className={`col-md-6 mb-30 ${!index ? "mt-50 mt-sm-0" : ""} `}
+                  className={`col-md-6 mb-30 ${!index ? "mt-50 mt-sm-0" : ""}`}
                 >
                   <div className="testimonials-4-item">
                     <div className="testimonials-4-icon">
@@ -116,57 +112,42 @@ export default function Testimonials() {
                   </div>
                 </div>
               ))}
-              {/* End Testimonials Item */}
             </div>
           </div>
         </div>
-        {/* Testimonials Grid */}
       </div>
       {/* Logotypes */}
       <div className="page-section pb-0 text-center">
-        <h3 className="section-title-tiny">Trusted by Leading Companies</h3>
+        <h3 className="section-title-tiny">
+          {language === "zh"
+            ? "受领先企业信赖"
+            : "Trusted by Leading Companies"}
+        </h3>
         <Swiper
           spaceBetween={0}
           slidesPerView={6}
           watchSlidesProgress
           modules={[Autoplay]}
           breakpoints={{
-            1199: {
-              slidesPerView: 6, // When window width is <= 1199px
-            },
-
-            768: {
-              slidesPerView: 4, // When window width is <= 768px
-            },
-            480: {
-              slidesPerView: 3, // When window width is <= 480px
-            },
-
-            0: {
-              slidesPerView: 2,
-            },
+            1199: { slidesPerView: 6 },
+            768: { slidesPerView: 4 },
+            480: { slidesPerView: 3 },
+            0: { slidesPerView: 2 },
           }}
           autoplay
           resizeObserver
           className="small-item-carousel black owl-carousel mb-0 owl-theme overflow-hidden position-static"
-          style={{
-            opacity: 1,
-            display: "block",
-          }}
+          style={{ opacity: 1, display: "block" }}
         >
-          {/* Team item */}
-          {brands.map((elm, i) => (
+          {trans.brands.map((brand, i) => (
             <SwiperSlide className="owl-item" key={i}>
               <div className="logo-item">
-                <Image src={elm} width={215} height={75} alt="Company Name" />
+                <Image src={brand} width={215} height={75} alt="Company Name" />
               </div>
             </SwiperSlide>
           ))}
-
-          {/* End Team item */}
         </Swiper>
       </div>
-      {/* End Logotypes */}
     </div>
   );
 }

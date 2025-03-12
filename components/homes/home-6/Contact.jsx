@@ -1,65 +1,70 @@
 "use client";
-import { contactItems } from "@/data/contact";
-import React from "react";
+
+import React, { useContext } from "react";
 import Image from "next/image";
+import { LanguageContext } from "@/app/context/LanguageProvider";
+import en from "@/app/locales/en";
+import zh from "@/app/locales/zh";
+
 export default function Contact() {
+  const { language } = useContext(LanguageContext);
+  const trans = language === "zh" ? zh.contact : en.contact;
+
   return (
     <div className="container position-relative">
       <div className="row">
         {/* Left Column */}
         <div className="col-lg-4 mb-md-50 mb-sm-30 position-relative z-index-1">
-          <h2 className="section-caption-fancy mb-20 mb-xs-10">Contact Us</h2>
+          <h2 className="section-caption-fancy mb-20 mb-xs-10">
+            {trans.header.title}
+          </h2>
           <h3 className="section-title mb-50 mb-sm-30">
-            We’re open to talk to good people.
+            {trans.header.subtitle}
           </h3>
           {/* Contact Information */}
           <div className="row">
             <div className="col-md-11">
-              {/* Address */}
-
-              {contactItems.map((item, index) => (
-                <React.Fragment key={index}>
-                  <div
-                    className={`contact-item ${
-                      index !== 3 ? "mb-40 mb-sm-20" : ""
-                    }`}
-                  >
-                    <div className="ci-icon">
-                      <i className={item.iconClass} />
-                    </div>
-                    <h4 className="ci-title  visually-hidden">{item.title}</h4>
-                    <div className="ci-text">{item.text}</div>
-                    <div>
-                      <a
-                        href={item.link.url}
-                        target={item.link.target}
-                        rel={item.link.rel}
-                        className="link-hover-anim"
-                        data-link-animate="y"
-                      >
-                        <span className="link-strong link-strong-unhovered">
-                          {item.link.text}{" "}
-                          <i
-                            className="mi-arrow-right size-18"
-                            aria-hidden="true"
-                          ></i>
-                        </span>
-                        <span
-                          className="link-strong link-strong-hovered"
-                          aria-hidden="true"
-                        >
-                          {item.link.text}{" "}
-                          <i
-                            className="mi-arrow-right size-18"
-                            aria-hidden="true"
-                          ></i>
-                        </span>
-                      </a>
-                    </div>
+              {trans.items.map((item, index) => (
+                <div
+                  key={index}
+                  className={`contact-item ${
+                    index !== trans.items.length - 1 ? "mb-40 mb-sm-20" : ""
+                  }`}
+                >
+                  <div className="ci-icon">
+                    <i className={item.iconClass} />
                   </div>
-                </React.Fragment>
+                  <h4 className="ci-title visually-hidden">{item.title}</h4>
+                  <div className="ci-text">{item.text}</div>
+                  <div>
+                    <a
+                      href={item.link.url}
+                      target={item.link.target}
+                      rel={item.link.rel}
+                      className="link-hover-anim"
+                      data-link-animate="y"
+                    >
+                      <span className="link-strong link-strong-unhovered">
+                        {item.link.text}{" "}
+                        <i
+                          className="mi-arrow-right size-18"
+                          aria-hidden="true"
+                        ></i>
+                      </span>
+                      <span
+                        className="link-strong link-strong-hovered"
+                        aria-hidden="true"
+                      >
+                        {item.link.text}{" "}
+                        <i
+                          className="mi-arrow-right size-18"
+                          aria-hidden="true"
+                        ></i>
+                      </span>
+                    </a>
+                  </div>
+                </div>
               ))}
-              {/* End Phone */}
             </div>
           </div>
           {/* End Contact Information */}
@@ -81,7 +86,7 @@ export default function Contact() {
             </div>
             {/* End Decorative Image */}
             <div className="box-shadow round p-4 p-sm-5">
-              <h4 className="h3 mb-30">Get in Touch</h4>
+              <h4 className="h3 mb-30">{trans.form.formTitle}</h4>
               {/* Contact Form */}
               <form
                 onSubmit={(e) => e.preventDefault()}
@@ -92,13 +97,13 @@ export default function Contact() {
                   <div className="col-md-6">
                     {/* Name */}
                     <div className="form-group">
-                      <label htmlFor="name">Name</label>
+                      <label htmlFor="name">{trans.form.nameLabel}</label>
                       <input
                         type="text"
                         name="name"
                         id="name"
                         className="input-lg round form-control"
-                        placeholder="Enter your name"
+                        placeholder={trans.form.namePlaceholder}
                         pattern=".{3,100}"
                         required
                         aria-required="true"
@@ -109,13 +114,13 @@ export default function Contact() {
                   <div className="col-md-6">
                     {/* Email */}
                     <div className="form-group">
-                      <label htmlFor="email">Email</label>
+                      <label htmlFor="email">{trans.form.emailLabel}</label>
                       <input
                         type="email"
                         name="email"
                         id="email"
                         className="input-lg round form-control"
-                        placeholder="Enter your email"
+                        placeholder={trans.form.emailPlaceholder}
                         pattern=".{5,100}"
                         required
                         aria-required="true"
@@ -126,13 +131,13 @@ export default function Contact() {
                 </div>
                 {/* Message */}
                 <div className="form-group">
-                  <label htmlFor="message">Message</label>
+                  <label htmlFor="message">{trans.form.messageLabel}</label>
                   <textarea
                     name="message"
                     id="message"
                     className="input-lg round form-control"
                     style={{ height: 130 }}
-                    placeholder="Enter your message"
+                    placeholder={trans.form.messagePlaceholder}
                     defaultValue={""}
                   />
                 </div>
@@ -145,7 +150,7 @@ export default function Contact() {
                         id="submit_btn"
                         aria-controls="result"
                       >
-                        <span>Send Message</span>
+                        <span>{trans.form.submitButton}</span>
                       </button>
                     </div>
                     {/* End Send Button */}
@@ -154,9 +159,9 @@ export default function Contact() {
                     {/* Inform Tip */}
                     <div className="form-tip w-100 pt-3 mt-sm-20">
                       <i className="icon-info size-16" />
-                      All the fields are required. By sending the form you agree
-                      to the <a href="#">Terms &amp; Conditions</a> and{" "}
-                      <a href="#">Privacy Policy</a>.
+                      {trans.form.formTip.split(" ").map((word, idx) => (
+                        <React.Fragment key={idx}>{word} </React.Fragment>
+                      ))}
                     </div>
                     {/* End Inform Tip */}
                   </div>

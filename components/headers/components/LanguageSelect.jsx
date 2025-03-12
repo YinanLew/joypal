@@ -1,23 +1,28 @@
-import React, { useState, useRef } from "react";
+"use client";
+
+import React, { useState, useRef, useContext } from "react";
+import { LanguageContext } from "@/app/context/LanguageProvider";
 
 export default function LanguageSelect() {
-  // State to manage dropdown visibility
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  // State to manage the selected language
-  const [selectedLanguage, setSelectedLanguage] = useState("En");
-
   const dropdownRef = useRef(null);
 
-  // Toggle dropdown visibility
+  // Pull both the current language and the setter function from context
+  const { language, setLanguage } = useContext(LanguageContext);
+
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  // Handle language selection
-  const handleLanguageSelect = (language) => {
-    setSelectedLanguage(language);
-    setIsDropdownOpen(false); // Close dropdown after selecting a language
+  const handleLanguageSelect = (lang) => {
+    setLanguage(lang); // <--- set global language
+    setIsDropdownOpen(false);
+  };
+
+  // Use short codes or however you wish to display the chosen language:
+  const shortCodes = {
+    en: "En",
+    zh: "中文",
   };
 
   return (
@@ -30,27 +35,21 @@ export default function LanguageSelect() {
           toggleDropdown();
         }}
       >
-        {selectedLanguage} <i className="mi-chevron-down" />
+        {shortCodes[language] ?? "En"} <i className="mi-chevron-down" />
       </a>
 
-      {/* Dropdown menu with sliding effect */}
       <ul
         className={`mn-sub to-left ${isDropdownOpen ? "open" : "closed"}`}
         ref={dropdownRef}
       >
         <li>
-          <a href="#" onClick={() => handleLanguageSelect("En")}>
+          <a href="#" onClick={() => handleLanguageSelect("en")}>
             English
           </a>
         </li>
         <li>
-          <a href="#" onClick={() => handleLanguageSelect("Fr")}>
-            French
-          </a>
-        </li>
-        <li>
-          <a href="#" onClick={() => handleLanguageSelect("De")}>
-            German
+          <a href="#" onClick={() => handleLanguageSelect("zh")}>
+            中文
           </a>
         </li>
       </ul>

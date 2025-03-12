@@ -8,7 +8,7 @@ import "react-modal-video/css/modal-video.css";
 import "photoswipe/dist/photoswipe.css";
 import { usePathname } from "next/navigation";
 import { parallaxMouseMovement, parallaxScroll } from "@/utlis/parallax";
-
+import { LanguageProvider } from "./context/LanguageProvider";
 import "tippy.js/dist/tippy.css";
 import { init_wow } from "@/utlis/initWowjs";
 import { headerChangeOnScroll } from "@/utlis/changeHeaderOnScroll";
@@ -69,7 +69,10 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </head>
-      <body className="appear-animate body">{children}</body>
+      <body className="appear-animate body">
+        {" "}
+        <LanguageProvider>{children}</LanguageProvider>
+      </body>
     </html>
   );
 }
