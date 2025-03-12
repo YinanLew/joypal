@@ -1,36 +1,17 @@
-"use client";
-
-import { useContext } from "react";
 import AnimatedText from "@/components/common/AnimatedText";
 import Footer6 from "@/components/footers/Footer6";
 import Header6 from "@/components/headers/Header6";
-import About from "@/components/homes/home-6/About"; // Images composition remains unchanged
+import About from "@/components/homes/home-6/About";
 import Features from "@/components/homes/home-6/Features";
 import Testimonials from "@/components/homes/home-6/Testimonials";
 import TestimonialsDark from "@/components/homes/home-6/TestimonialsDark";
 import { fancyMultipage } from "@/data/menu";
 import Image from "next/image";
 import Link from "next/link";
-
-// Import our shared translations and LanguageContext
-import en from "@/app/locales/en";
-import zh from "@/app/locales/zh";
-import { LanguageContext } from "@/app/context/LanguageProvider";
-
 const onePage = false;
 const dark = false;
 
-export const metadata = {
-  title:
-    "Fancy About || Resonance &mdash; One & Multi Page React Nextjs Creative Template",
-  description:
-    "Resonance &mdash; One & Multi Page React Nextjs Creative Template",
-};
-
 export default function FancyAboutPage() {
-  const { language } = useContext(LanguageContext);
-  const t = language === "zh" ? zh.about : en.about;
-
   return (
     <>
       <div className="theme-fancy">
@@ -39,8 +20,8 @@ export default function FancyAboutPage() {
             <Header6 links={fancyMultipage} />
           </nav>
           <main id="main">
-            {/* Background Section */}
             <section className="page-section bg-gradient-gray-light-1 bg-scroll overflow-hidden">
+              {/* <!-- Background Shape --> */}
               <div className="bg-shape-1 wow fadeIn">
                 <Image
                   width="1443"
@@ -49,6 +30,8 @@ export default function FancyAboutPage() {
                   alt=""
                 />
               </div>
+              {/* <!-- End Background Shape --> */}
+
               <div className="container position-relative pt-10 pt-sm-40 text-center">
                 <div className="row">
                   <div className="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
@@ -64,6 +47,7 @@ export default function FancyAboutPage() {
                         </span>
                       </span>
                     </h1>
+
                     <p
                       className="section-descr mb-0 wow fadeIn"
                       data-wow-delay="0.2s"
@@ -74,45 +58,25 @@ export default function FancyAboutPage() {
                 </div>
               </div>
             </section>
-
-            {/* About Text Section (switchable language) */}
             <section
-              className={`page-section scrollSpysection ${
+              className={`page-section  scrollSpysection ${
                 dark ? "bg-dark-1 light-content" : ""
-              }`}
+              } `}
               id="about"
             >
               <div className="container position-relative">
                 <div className="row mb-xs-40">
                   <div className="col-md-10 offset-md-1 col-lg-8 offset-lg-2 text-center">
-                    <h2
-                      className="hs-title-10 mb-30 wow fadeInUp"
-                      data-wow-duration="1.2s"
+                    <p
+                      className="section-descr mb-40 mb-sm-20 wow fadeInUp"
+                      data-wow-delay="0.06s"
                     >
-                      {t.title}
-                    </h2>
-                    <h3
-                      className="section-caption-fancy mb-30 wow fadeInUp"
-                      data-wow-duration="1.2s"
-                    >
-                      {t.heading}
-                    </h3>
-                    <h4
-                      className="section-descr mb-40 wow fadeInUp"
-                      data-wow-delay="0.2s"
-                    >
-                      {t.subtitle}
-                    </h4>
-                    {t.content.map((item, idx) => (
-                      <div
-                        key={idx}
-                        className="about-item mb-30 wow fadeInUp"
-                        data-wow-delay={`${0.3 + idx * 0.2}s`}
-                      >
-                        <h5 className="mb-10">{item.sectionTitle}</h5>
-                        <p className="section-descr">{item.text}</p>
-                      </div>
-                    ))}
+                      Although web design has a fairly recent history. It has
+                      become a large part of people's everyday lives. It is hard
+                      to imagine the Internet without animated graphics,
+                      different styles of typography, background, videos and
+                      music.
+                    </p>
                     <div
                       className="local-scroll wow fadeInUp"
                       data-wow-delay="0.12s"
@@ -143,25 +107,24 @@ export default function FancyAboutPage() {
                     </div>
                   </div>
                 </div>
-
-                {/* Images Composition (existing About component) */}
+                {/* Images Composition */}
                 <About />
+                {/* End Images Composition */}
               </div>
             </section>
-
             <hr className={`mt-0 mb-0 ${dark ? "white" : ""}`} />
             <section
-              className={`page-section ${
+              className={`page-section  ${
                 dark ? "bg-dark-1 light-content" : ""
-              }`}
+              } `}
             >
               <Features />
             </section>
             <hr className={`mt-0 mb-0 ${dark ? "white" : ""}`} />
             <section
-              className={`page-section ${
+              className={`page-section  ${
                 dark ? "bg-dark-1 light-content" : ""
-              }`}
+              } `}
             >
               {dark ? <TestimonialsDark /> : <Testimonials />}
             </section>
@@ -169,7 +132,7 @@ export default function FancyAboutPage() {
           <footer className="page-section footer bg-dark-1 light-content pb-30">
             <Footer6 />
           </footer>
-        </div>
+        </div>{" "}
       </div>
     </>
   );
