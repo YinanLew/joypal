@@ -20,7 +20,7 @@ export default function Header6({ links }) {
     { href: "#home", text: trans.menu.home },
     { href: "#about", text: trans.menu.about },
     { href: "#services", text: trans.menu.services },
-    { href: "#blog", text: trans.menu.blog },
+    // { href: "#blog", text: trans.menu.blog },
     // { href: "#pricing", text: trans.menu.pricing },
     { href: "#contact", text: trans.menu.contact },
   ];

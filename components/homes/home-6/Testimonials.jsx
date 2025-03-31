@@ -96,12 +96,12 @@ export default function Testimonials() {
                       <p className="mb-0">{testimonial.text}</p>
                       <footer className="testimonials-4-author mt-30 clearfix">
                         <div className="testimonials-4-author-img float-start">
-                          <Image
+                          {/* <Image
                             width={44}
                             height={44}
                             src={testimonial.imgSrc}
                             alt={testimonial.altText}
-                          />
+                          /> */}
                         </div>
                         <div className="overflow-hidden">
                           {testimonial.author}
@@ -142,7 +142,12 @@ export default function Testimonials() {
           {trans.brands.map((brand, i) => (
             <SwiperSlide className="owl-item" key={i}>
               <div className="logo-item">
-                <Image src={brand} width={215} height={75} alt="Company Name" />
+                <Image
+                  src={brand.img}
+                  width={215}
+                  height={75}
+                  alt={brand.brandAltText}
+                />
               </div>
             </SwiperSlide>
           ))}
