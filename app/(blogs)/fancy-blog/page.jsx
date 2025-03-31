@@ -14,11 +14,11 @@ import Form3 from "@/components/newsletterForms/Form3";
 const onePage = false;
 const dark = false;
 export const metadata = {
-  title:
-    "Fancy Blog || Resonance &mdash; One & Multi Page React Nextjs Creative Template",
+  title: "JoyPal Logistics Blog | Delivery Tips & Community News",
   description:
-    "Resonance &mdash; One & Multi Page React Nextjs Creative Template",
+    "Stay updated with JoyPal’s latest news, delivery tips, eco-friendly initiatives, and logistics updates supporting your lifestyle and community.",
 };
+
 export default function FancyBlogPage() {
   return (
     <>

@@ -6,10 +6,11 @@ import Image from "next/image";
 
 export const metadata = {
   title:
-    "Home 6 Main Demo Onepage || Resonance &mdash; One & Multi Page React Nextjs Creative Template",
+    "JoyPal Logistics | Smart, Affordable & Sustainable Delivery Solutions",
   description:
-    "Resonance &mdash; One & Multi Page React Nextjs Creative Template",
+    "JoyPal Logistics provides end-to-end courier and logistics services including international shipping, local delivery, furniture recycling, and free charitable donation transport — built for convenience, care, and community impact.",
 };
+
 export default function Home6MainDemoOnepage() {
   return (
     <>

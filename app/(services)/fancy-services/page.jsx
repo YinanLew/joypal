@@ -10,10 +10,9 @@ import Link from "next/link";
 const onePage = false;
 const dark = false;
 export const metadata = {
-  title:
-    "Fancy Services || Resonance &mdash; One & Multi Page React Nextjs Creative Template",
+  title: "JoyPal Logistics | Comprehensive Delivery & Recycling Services",
   description:
-    "Resonance &mdash; One & Multi Page React Nextjs Creative Template",
+    "Explore JoyPal's full range of services including international shipping, local courier, bulk logistics, furniture recycling, and charity delivery support.",
 };
 export default function FancyServicesPage() {
   return (

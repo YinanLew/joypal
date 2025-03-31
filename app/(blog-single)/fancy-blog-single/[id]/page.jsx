@@ -9,11 +9,11 @@ import { fancyMultipage } from "@/data/menu";
 import Image from "next/image";
 import { allBlogs } from "@/data/blogs";
 export const metadata = {
-  title:
-    "Fancy Blog Single || Resonance &mdash; One & Multi Page React Nextjs Creative Template",
+  title: "Insights & Stories | JoyPal Logistics Blog",
   description:
-    "Resonance &mdash; One & Multi Page React Nextjs Creative Template",
+    "Discover real stories and insights from JoyPal Logistics — covering eco-logistics, community service, and innovative delivery solutions.",
 };
+
 export default function FancyBlogSinglePage({ params }) {
   const blog = allBlogs.filter((elm) => elm.id == params.id)[0] || allBlogs[0];
   return (
