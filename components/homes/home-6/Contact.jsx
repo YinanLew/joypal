@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Image from "next/image";
 import { LanguageContext } from "@/app/context/LanguageProvider";
 import en from "@/app/locales/en";
@@ -9,6 +9,93 @@ import zh from "@/app/locales/zh";
 export default function Contact() {
   const { language } = useContext(LanguageContext);
   const trans = language === "zh" ? zh.contact : en.contact;
+
+  // Form state
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  // Form status state
+  const [formStatus, setFormStatus] = useState({
+    isSubmitting: false,
+    isSubmitted: false,
+    isError: false,
+    message: "",
+  });
+
+  // Handle input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Basic validation
+    if (!formData.name || !formData.email || !formData.message) {
+      setFormStatus({
+        isSubmitting: false,
+        isSubmitted: true,
+        isError: true,
+        message: trans.form.errorMessageIncomplete,
+      });
+      return;
+    }
+
+    // Set submitting state
+    setFormStatus({
+      isSubmitting: true,
+      isSubmitted: false,
+      isError: false,
+      message: "",
+    });
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Success
+        setFormStatus({
+          isSubmitting: false,
+          isSubmitted: true,
+          isError: false,
+          message: trans.form.successMessage,
+        });
+
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          message: "",
+        });
+      } else {
+        // API returned an error
+        throw new Error(data.message || trans.form.errorMessageGeneral);
+      }
+    } catch (error) {
+      setFormStatus({
+        isSubmitting: false,
+        isSubmitted: true,
+        isError: true,
+        message: error.message || trans.form.errorMessageGeneral,
+      });
+    }
+  };
 
   return (
     <div className="container position-relative">
@@ -89,7 +176,7 @@ export default function Contact() {
               <h4 className="h3 mb-30">{trans.form.formTitle}</h4>
               {/* Contact Form */}
               <form
-                onSubmit={(e) => e.preventDefault()}
+                onSubmit={handleSubmit}
                 className="form contact-form"
                 id="contact_form"
               >
@@ -107,6 +194,8 @@ export default function Contact() {
                         pattern=".{3,100}"
                         required
                         aria-required="true"
+                        value={formData.name}
+                        onChange={handleChange}
                       />
                     </div>
                     {/* End Name */}
@@ -124,6 +213,8 @@ export default function Contact() {
                         pattern=".{5,100}"
                         required
                         aria-required="true"
+                        value={formData.email}
+                        onChange={handleChange}
                       />
                     </div>
                     {/* End Email */}
@@ -138,7 +229,9 @@ export default function Contact() {
                     className="input-lg round form-control"
                     style={{ height: 130 }}
                     placeholder={trans.form.messagePlaceholder}
-                    defaultValue={""}
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
                   />
                 </div>
                 <div className="row">
@@ -149,8 +242,14 @@ export default function Contact() {
                         className="submit_btn btn btn-mod btn-color btn-large btn-round btn-hover-anim"
                         id="submit_btn"
                         aria-controls="result"
+                        type="submit"
+                        disabled={formStatus.isSubmitting}
                       >
-                        <span>{trans.form.submitButton}</span>
+                        <span>
+                          {formStatus.isSubmitting
+                            ? trans.form.submittingButton || "Sending..."
+                            : trans.form.submitButton}
+                        </span>
                       </button>
                     </div>
                     {/* End Send Button */}
@@ -166,12 +265,23 @@ export default function Contact() {
                     {/* End Inform Tip */}
                   </div>
                 </div>
+                {/* Form Result */}
                 <div
                   id="result"
                   role="region"
                   aria-live="polite"
                   aria-atomic="true"
-                />
+                  className={`mt-3 ${
+                    formStatus.isSubmitted
+                      ? formStatus.isError
+                        ? "text-danger"
+                        : "text-success"
+                      : "d-none"
+                  }`}
+                >
+                  {formStatus.message}
+                </div>
+                {/* End Form Result */}
               </form>
               {/* End Contact Form */}
             </div>
