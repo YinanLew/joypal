@@ -193,7 +193,7 @@ export default {
       {
         iconClass: "mi-map",
         title: "地址",
-        text: "多伦多JoyPal街123号, 加拿大",
+        text: "Massachusetts Ln, Markham, ON",
         link: {
           url: "https://maps.google.com",
           target: "_blank",

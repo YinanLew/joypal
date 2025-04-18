@@ -194,7 +194,7 @@ export default {
       {
         iconClass: "mi-map",
         title: "Address",
-        text: "123 JoyPal Street, Toronto, ON, Canada",
+        text: "Massachusetts Ln, Markham, ON",
         link: {
           url: "https://maps.google.com",
           target: "_blank",
