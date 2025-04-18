@@ -13,16 +13,16 @@ export const contactItems = [
   {
     iconClass: "mi-email",
     title: "Email",
-    text: "ibthemes21@gmail.com",
+    text: "Joypallogistics@gmail.com",
     link: {
-      url: "mailto:ibthemes21@gmail.com",
+      url: "mailto:Joypallogistics@gmail.com",
       text: "Say Hello",
     },
   },
   {
     iconClass: "mi-mobile",
     title: "Phone",
-    text: "+1 837 652 8800",
+    text: "+1 647 687 6986",
     link: {
       url: "tel:+61383767284",
       text: "Call now",

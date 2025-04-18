@@ -204,15 +204,15 @@ export default {
       {
         iconClass: "mi-mobile",
         title: "电话",
-        text: "+1 234 567 890",
+        text: "+1 647 687 6986",
         link: { url: "tel:+1234567890", target: "", rel: "", text: "拨打电话" },
       },
       {
         iconClass: "mi-email",
         title: "邮箱",
-        text: "info@joypal.com",
+        text: "Joypallogistics@gmail.com",
         link: {
-          url: "mailto:info@joypal.com",
+          url: "mailto:Joypallogistics@gmail.com",
           target: "",
           rel: "",
           text: "发送邮件",
@@ -221,7 +221,7 @@ export default {
       {
         iconClass: "mi-clock",
         title: "工作时间",
-        text: "周一至周五 9AM - 6PM",
+        text: "周一至周日 9AM - 6PM",
         link: { url: "#about", target: "", rel: "", text: "了解更多" },
       },
     ],

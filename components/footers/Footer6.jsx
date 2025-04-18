@@ -25,7 +25,7 @@ export default function Footer6() {
         <div className="col-lg-3 text-gray mb-md-50">
           <div className="mb-30">
             <Image
-              src="/assets/images/JoyPal_Logistics_Logo_White.jpg"
+              src="/assets/images/JoyPal_Logistics_Logo_White.svg"
               alt="Your Company Logo"
               width={154}
               height={35}
@@ -34,11 +34,11 @@ export default function Footer6() {
           <p>{trans.paragraph}</p>
           <div className="clearlinks">
             <strong>{trans.phoneLabel}</strong>
-            <a href="tel:+18376528800">+1 837 652 8800</a>
+            <a href="tel:+16476876986">+1 647 687 6986</a>
           </div>
           <div className="clearlinks">
             <strong>{trans.emailLabel}</strong>
-            <a href="mailto:ibthemes21@gmail.com">ibthemes21@gmail.com</a>
+            <a href="mailto:Joypallogistics@gmail.com">Joypallogistics@gmail.com</a>
           </div>
         </div>
         {/* End Left Column */}

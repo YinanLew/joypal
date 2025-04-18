@@ -205,15 +205,15 @@ export default {
       {
         iconClass: "mi-mobile",
         title: "Phone",
-        text: "+1 234 567 890",
-        link: { url: "tel:+1234567890", target: "", rel: "", text: "Call us" },
+        text: "+1 647 687 6986",
+        link: { url: "tel:+16476876986", target: "", rel: "", text: "Call us" },
       },
       {
         iconClass: "mi-email",
         title: "Email",
-        text: "info@joypal.com",
+        text: "Joypallogistics@gmail.com",
         link: {
-          url: "mailto:info@joypal.com",
+          url: "mailto:Joypallogistics@gmail.com",
           target: "",
           rel: "",
           text: "Send email",
@@ -222,7 +222,7 @@ export default {
       {
         iconClass: "mi-clock",
         title: "Working Hours",
-        text: "Mon-Fri 9AM - 6PM",
+        text: "Mon-Sun 9AM - 6PM",
         link: { url: "#about", target: "", rel: "", text: "Learn more" },
       },
     ],

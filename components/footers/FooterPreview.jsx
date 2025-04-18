@@ -32,11 +32,11 @@ export default function FooterPreview() {
           </p>
           <div className="clearlinks">
             <strong>T.</strong>
-            <a href="tel:+18376528800">+1 837 652 8800</a>
+            <a href="tel:+16476876986">+1 647 687 6986</a>
           </div>
           <div className="clearlinks">
             <strong>E.</strong>
-            <a href="mailto:ibthemes21@gmail.com">ibthemes21@gmail.com</a>
+            <a href="mailto:Joypallogistics@gmail.com">Joypallogistics@gmail.com</a>
           </div>
         </div>
         <div className="col-md-7 offset-md-1 offset-lg-2">

@@ -46,9 +46,9 @@ export default function MainAboutPage1() {
                 <div className="inner-nav desktop-nav">
                   <ul className="clearlist scroll-nav local-scroll justify-content-end">
                     <li className="active">
-                      <a href="mailto:ibthemes21@gmail.com">
+                      <a href="mailto:Joypallogistics@gmail.com">
                         <i className="mi-email align-center" />
-                        ibthemes21@gmail.com
+                        Joypallogistics@gmail.com
                       </a>
                     </li>
                     <li>
